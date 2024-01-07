@@ -1,0 +1,13 @@
+version: "3.1"
+
+services:
+
+  hemna-search:
+    image: jitesoft/lighttpd
+    restart: unless-stopped
+    ports:
+      - 8060:80
+    volumes:
+      - ../html:/var/www/html
+    environment:
+      - SERVER_NAME=search.hemna.com

@@ -35,6 +35,7 @@
           console.log(message);
           url = "https://google.com/search?q=" + message;
           $(location).attr('href',url);
+          $("#message").val("");
         });
 
         $( "#blocklistform" ).submit(function( event ) {

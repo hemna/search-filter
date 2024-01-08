@@ -15,6 +15,7 @@
     <script type="text/javascript">
       var block_list = [];
       $(document).ready(function() {
+      $("#searchstr").focus();
         init_block_list();
         console.log("ready!");
         console.log("Current block list: ", block_list);
@@ -28,14 +29,14 @@
 
         $( "#searchform" ).submit(function( event ) {
           event.preventDefault();
-          var message = $("#message").val();
+          var searchstr = $("#searchstr").val();
           for (var i = 0; i < block_list.length; i++) {
-            message += "+-site%3A" + block_list[i];
+            searchstr += "+-site%3A" + block_list[i];
           }
-          console.log(message);
-          url = "https://google.com/search?q=" + message;
+          console.log(searchstr);
+          url = "https://google.com/search?q=" + searchstr;
           $(location).attr('href',url);
-          $("#message").val("");
+          $("#searchstr").val("");
         });
 
         $( "#blocklistform" ).submit(function( event ) {
@@ -80,11 +81,16 @@
 
   <body>
       <div class="container-lg">
+         <div class="row justify-content-center align-items-center">
+           <div class="col-lg-6">
+             <h1>Hemna's Google Search Filter</h1>
+           </div>
+         </div>
          <div class="row">
-            <form class="row gx-1 gy-1 justify-content-center align-items-center" id="searchform" name="sendmsg" action="" autocomplete="off">
+            <form class="row gx-1 gy-1 justify-content-center align-items-center" id="searchform" action="" autocomplete="off">
                 <div class="col-lg-6">
-                    <label for="message" class="visually-hidden">Search</label>
-                    <input type="search" class="form-control mb-2 mr-sm-2" name="message" id="message" size="80" placeholder="Search">
+                    <label for="searchstr" class="visually-hidden">Search</label>
+                    <input type="search" class="form-control mb-2 mr-sm-2" name="searchstr" id="searchstr" size="80" placeholder="Search">
                 </div>
                 <div class="col-auto">
                     <input type="submit" name="submit" class="btn btn-primary mb-2" id="send_msg" value="Search"/>
@@ -93,8 +99,8 @@
          </div>
          <form class="row gx-1 gy-1 justify-content-center align-items-center" style="margin-top: 40px;" id="blocklistform" action="" autocomplete="off">
              <div class="col-lg-4">
-                 <label for="message" class="visually-hidden">Add site to block</label>
-                 <input type="search" class="form-control mb-2 mr-sm-2" name="message" id="block_site" size="80" placeholder="Add site to block">
+                 <label for="block_site" class="visually-hidden">Add site to block</label>
+                 <input type="search" class="form-control mb-2 mr-sm-2" name="block_site" id="block_site" size="80" placeholder="Add site to block">
              </div>
              <div class="col-auto">
                  <input type="submit" name="submit" class="btn btn-primary mb-2" id="add_site" value="Add Site"/>

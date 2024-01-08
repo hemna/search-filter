@@ -15,7 +15,6 @@
     <script type="text/javascript">
       var block_list = [];
       $(document).ready(function() {
-      $("#searchstr").focus();
         init_block_list();
         console.log("ready!");
         console.log("Current block list: ", block_list);
@@ -47,6 +46,8 @@
           $("#block_list").html(build_list_html());
           $("#block_site").val("");
         });
+
+        $("#searchstr").focus();
       });
 
       function init_block_list() {
@@ -79,7 +80,7 @@
     </script>
   </head>
 
-  <body>
+  <body OnLoad="document.searchform.searchstr.focus();">
       <div class="container-lg">
          <div class="row justify-content-center align-items-center">
            <div class="col-lg-6">
@@ -87,10 +88,10 @@
            </div>
          </div>
          <div class="row">
-            <form class="row gx-1 gy-1 justify-content-center align-items-center" id="searchform" action="" autocomplete="off">
+            <form class="row gx-1 gy-1 justify-content-center align-items-center" id="searchform" name="searchform" action="" autocomplete="off">
                 <div class="col-lg-6">
                     <label for="searchstr" class="visually-hidden">Search</label>
-                    <input type="search" class="form-control mb-2 mr-sm-2" name="searchstr" id="searchstr" size="80" placeholder="Search">
+                    <input type="search" class="form-control mb-2 mr-sm-2" name="searchstr" id="searchstr" size="80" placeholder="Search" autofocus>
                 </div>
                 <div class="col-auto">
                     <input type="submit" name="submit" class="btn btn-primary mb-2" id="send_msg" value="Search"/>

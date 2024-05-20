@@ -29,11 +29,7 @@
         $( "#searchform" ).submit(function( event ) {
           event.preventDefault();
           var searchstr = $("#searchstr").val();
-          for (var i = 0; i < block_list.length; i++) {
-            searchstr += "+-site%3A" + block_list[i];
-          }
-          console.log(searchstr);
-          url = "https://google.com/search?q=" + searchstr;
+          url = construct_url(searchstr);
           $(location).attr('href',url);
           $("#searchstr").val("");
         });
@@ -48,7 +44,27 @@
         });
 
         $("#searchstr").focus();
+
+        // Get query params from current url to see if there is a direct
+        // request to go to search already.
+        let params = new URL(document.location.toString()).searchParams;
+        let searchParams = new URLSearchParams(params);
+        if (searchParams.has("search") === true) {
+            console.log(searchParams.get("search"));
+            url = construct_url(searchParams.get("search"));
+            console.log(url);
+            $(location).attr('href', url);
+        }
       });
+
+      function construct_url(searchstr) {
+          for (var i = 0; i < block_list.length; i++) {
+            searchstr += "+-site%3A" + block_list[i];
+          }
+          console.log(searchstr);
+          url = "https://google.com/search?q=" + searchstr;
+          return url;
+      }
 
       function init_block_list() {
         block_list = JSON.parse(localStorage.getItem('block_list'));

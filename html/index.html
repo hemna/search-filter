@@ -98,11 +98,14 @@
 
   <body OnLoad="document.searchform.searchstr.focus();">
       <div class="container-lg">
+
          <div class="row justify-content-center align-items-center">
            <div class="col-lg-6">
              <h1>Hemna's Google Search Filter</h1>
+             <span>This does a search via google, but filters out results from sites you don't want</span>
            </div>
          </div>
+
          <div class="row">
             <form class="row gx-1 gy-1 justify-content-center align-items-center" id="searchform" name="searchform" action="" autocomplete="off">
                 <div class="col-lg-6">
@@ -114,6 +117,7 @@
                 </div>
             </form>
          </div>
+
          <form class="row gx-1 gy-1 justify-content-center align-items-center" style="margin-top: 40px;" id="blocklistform" action="" autocomplete="off">
              <div class="col-lg-4">
                  <label for="block_site" class="visually-hidden">Add site to block</label>
@@ -124,16 +128,32 @@
              </div>
          </form>
 
-
          <div class="row justify-content-center align-items-center">
               <div class="col-lg-6 justify-content-center align-items-center">
-                Filtering out the following sites from google search results:
+                <h4>Filtering out the following sites from google search results:</h4>
                 <ul class="list-group" id="block_list"></ul>
               </div>
+         </div>
+
+          <br><br><br><br>
+          <div class="row justify-content-center align-items-center">
+              <div class="col-lg-6 justify-content-center align-items-center">
+                  <h5>How to enable this as the default search engine in Brave Browser</h5>
+                  <ol class="list-group list-group-numbered">
+                    <li class="list-group-item">In Brave go to url <a href="brave://settings/searchEngines" target="_blank">brave://settings/searchEngines</a></li>
+                    <li class="list-group-item">Scroll down to the "Site Search" section</li>
+                    <li class="list-group-item">Click the "Add" button.</li>
+                    <li class="list-group-item">set Name to "HemnaGoogle"</li>
+                    <li class="list-group-item">set Shortcut to ":hg"</li>
+                    <li class="list-group-item">set URL to "https://search.hemna.com?search=%s"</li>
+                    <li class="list-group-item">Click Save button</li>
+                    <li class="list-group-item">In the newly added Site search entry on the Settings SearchEngines page click the 3 dots on the right.</li>
+                    <li class="list-group-item">Click "Make default"</li>
+                  </ol>
+              </div>
           </div>
+
       </div>
-
-
 
   </body>
 </html>
